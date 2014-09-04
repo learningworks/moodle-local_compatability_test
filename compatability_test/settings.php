@@ -36,10 +36,50 @@ if ($hassiteconfig) {
     $settings = new admin_settingpage('local_compatability_test', get_string('pluginname', 'local_compatability_test'));
     $ADMIN->add('localplugins', $settings);
 
-    /*$title = get_string('enable_browser_check', 'local_compatability_test');
+    $title = get_string('enable_browser_check', 'local_compatability_test');
     $desc =  get_string('enable_browser_check_desc', 'local_compatability_test');
     $setting = new admin_setting_configcheckbox('local_compatability_test/enable_browser_check', $title, $desc, 0);
-    $settings->add($setting);*/
+    $settings->add($setting);
+	
+	$title = get_string('enable_chrome_check', 'local_compatability_test');
+    $desc =  get_string('enable_chrome_check_desc', 'local_compatability_test');
+    $setting = new admin_setting_configcheckbox('local_compatability_test/enable_chrome_check', $title, $desc, 0);
+    $settings->add($setting);
+	
+	$title = get_string('min_version_chrome', 'local_compatability_test');
+    $desc = get_string('min_version_chrome_desc', 'local_compatability_test');
+    $setting = new admin_setting_configtext('local_compatability_test/min_version_chrome', $title, $desc, '');
+    $settings->add($setting);
+	
+	$title = get_string('enable_gecko_check', 'local_compatability_test');
+    $desc =  get_string('enable_gecko_check_desc', 'local_compatability_test');
+    $setting = new admin_setting_configcheckbox('local_compatability_test/enable_gecko_check', $title, $desc, 0);
+    $settings->add($setting);
+	
+	$title = get_string('min_version_gecko', 'local_compatability_test');
+    $desc = get_string('min_version_gecko_desc', 'local_compatability_test');
+    $setting = new admin_setting_configtext('local_compatability_test/min_version_gecko', $title, $desc, '');
+    $settings->add($setting);
+	
+	$title = get_string('enable_opera_check', 'local_compatability_test');
+    $desc =  get_string('enable_opera_check_desc', 'local_compatability_test');
+    $setting = new admin_setting_configcheckbox('local_compatability_test/enable_opera_check', $title, $desc, 0);
+    $settings->add($setting);
+	
+	$title = get_string('min_version_opera', 'local_compatability_test');
+    $desc = get_string('min_version_opera_desc', 'local_compatability_test');
+    $setting = new admin_setting_configtext('local_compatability_test/min_version_opera', $title, $desc, '');
+    $settings->add($setting);
+	
+	$title = get_string('enable_safari_check', 'local_compatability_test');
+    $desc =  get_string('enable_safari_check_desc', 'local_compatability_test');
+    $setting = new admin_setting_configcheckbox('local_compatability_test/enable_safari_check', $title, $desc, 0);
+    $settings->add($setting);
+	
+	$title = get_string('min_version_safari', 'local_compatability_test');
+    $desc = get_string('min_version_safari_desc', 'local_compatability_test');
+    $setting = new admin_setting_configtext('local_compatability_test/min_version_safari', $title, $desc, '');
+    $settings->add($setting);
 
     $title = get_string('enable_java_check', 'local_compatability_test');
     $desc = get_string('enable_java_check_desc', 'local_compatability_test');

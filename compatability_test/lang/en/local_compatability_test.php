@@ -32,6 +32,26 @@ $string['enable_browser_check_desc'] = 'Enable browser version checking against 
 $string['success_version_browser'] = 'You are running a sufficiently up-to-date Browser version';
 $string['failure_version_browser'] = 'You are not running the latest Browser version';
 
+$string['enable_chrome_check'] = 'Enable Chrome checking';
+$string['enable_chrome_check_desc'] = 'Enable chrome checking against set parameters';
+$string['min_version_chrome'] = 'Minimum Chrome Version';
+$string['min_version_chrome_desc'] = 'The minimum version of Chrome required to properly view the site';
+
+$string['enable_gecko_check'] = 'Enable Gecko checking';
+$string['enable_gecko_check_desc'] = 'Enable gecko checking against set parameters';
+$string['min_version_gecko'] = 'Minimum Gecko Version';
+$string['min_version_gecko_desc'] = 'The minimum version of Gecko required to properly view the site';
+
+$string['enable_opera_check'] = 'Enable Opera checking';
+$string['enable_opera_check_desc'] = 'Enable opera checking against set parameters';
+$string['min_version_opera'] = 'Minimum Opera Version';
+$string['min_version_opera_desc'] = 'The minimum version of Opera required to properly view the site';
+
+$string['enable_safari_check'] = 'Enable Safari checking';
+$string['enable_safari_check_desc'] = 'Enable safari checking against set parameters';
+$string['min_version_safari'] = 'Minimum Safari Version';
+$string['min_version_safari_desc'] = 'The minimum version of Safari required to properly view the site';
+
 $string['enable_java_check'] = 'Enable Java checking';
 $string['enable_java_check_desc'] = 'Enable Java version checking against set parameters';
 $string['min_version_java'] = 'Minimum Java Version';

@@ -99,3 +99,59 @@ function checkDisplayBanner(uptodateFlag, bannerfailure, link, bannerlink) {
 			}
 		}
 }
+
+function checkBrowser(browser) {
+    switch (browser){
+	    case "Chrome":
+		    if (PluginDetect.browser.isChrome) {
+				return true;
+			}
+		break;
+		case "Gecko":
+		    if (PluginDetect.browser.isGecko) {
+				return true;
+			}
+		break;
+		case "Opera":
+		    if (PluginDetect.browser.isOpera) {
+				return true;
+			}
+		break;
+		case "Safari":
+		    if (PluginDetect.browser.isSafari) {
+				return true;
+			}
+		break;
+    }
+ 
+}
+function isMinBrowser(browser,minVersion) {
+var currentVersion;
+minVersion = minVersion.split('.');
+var uptodate = true;
+    switch (browser){
+	    case "Chrome":
+			currentVersion = PluginDetect.browser.verChrome;
+			currentVersion = currentVersion.split(',');
+			for (var i = 0; i < minVersion.length; i++){
+				if (minVersion[i] < currentVersion[i]){
+					uptodate = false;
+				}
+			}
+			
+			console.log(uptodate);
+		break;
+		case "Gecko":
+            console.log(minVersion);
+			console.log(PluginDetect.browser.verGecko);
+		break;
+		case "Opera":
+            console.log(minVersion);
+			console.log(PluginDetect.browser.verOpera);
+		break;
+		case "Safari":
+            console.log(minVersion);
+			console.log(PluginDetect.browser.verSafari);
+		break;
+    }
+}

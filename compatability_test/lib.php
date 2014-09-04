@@ -67,6 +67,47 @@ function local_compatability_test_enable_browser_check() {
         return true;
     }
 }
+function local_compatability_test_enable_chrome_check() {
+    $enabled = get_config('local_compatability_test', 'enable_chrome_check');
+    if (empty($enabled)) {
+        return false;
+    } else {
+        return true;
+    }
+}
+function local_compatability_test_min_version_chrome() {
+    $enabled = get_config('local_compatability_test', 'min_version_chrome');
+	var_dump($enabled);
+    if (empty($enabled)) {
+        return false;
+    } else {
+        return $enabled;
+    }
+}
+function local_compatability_test_enable_gecko_check() {
+    $enabled = get_config('local_compatability_test', 'enable_gecko_check');
+    if (empty($enabled)) {
+        return false;
+    } else {
+        return true;
+    }
+}
+function local_compatability_test_enable_opera_check() {
+    $enabled = get_config('local_compatability_test', 'enable_opera_check');
+    if (empty($enabled)) {
+        return false;
+    } else {
+        return true;
+    }
+}
+function local_compatability_test_enable_safari_check() {
+    $enabled = get_config('local_compatability_test', 'enable_safari_check');
+    if (empty($enabled)) {
+        return false;
+    } else {
+        return true;
+    }
+}
 function local_compatability_test_enable_java_check() {
     $enabled = get_config('local_compatability_test', 'enable_java_check');
     if (empty($enabled)) {
@@ -111,8 +152,41 @@ function local_compatability_test_force_view_page() {
         return true;
     }
 }
-/*if (local_compatability_test_enable_browser_check()) {
-}*/
+
+if (local_compatability_test_enable_browser_check()) {
+	if (local_compatability_test_enable_chrome_check()) {
+	$minChrome = local_compatability_test_min_version_chrome();
+	var_dump($minChrome);
+	$CFG->additionalhtmlhead .= '
+		<script>
+		    if(checkBrowser("Chrome")){
+				isMinBrowser("Chrome",\''. $minChrome .'\');
+			}
+		</script>
+	';
+	}
+	if (local_compatability_test_enable_gecko_check()) {
+	$CFG->additionalhtmlhead .= '
+		<script>
+			checkBrowser("Gecko");
+		</script>
+	';
+	}
+	if (local_compatability_test_enable_opera_check()) {
+	$CFG->additionalhtmlhead .= '
+		<script>
+			checkBrowser("Opera");
+		</script>
+	';
+	}
+	if (local_compatability_test_enable_safari_check()) {
+	$CFG->additionalhtmlhead .= '
+		<script>
+			checkBrowser("Safari");
+		</script>
+	';
+	}
+}
 if (local_compatability_test_enable_java_check()) {
     $minjava = local_compatability_test_min_version_java();
     $CFG->additionalhtmlhead .= '
