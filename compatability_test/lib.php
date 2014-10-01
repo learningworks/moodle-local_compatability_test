@@ -26,20 +26,11 @@
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-global $COURSE, $USER, $DB, $CFG, $PAGE;
-
-
-$CFG->additionalhtmlhead .= '
-	<script src="'.$CFG->wwwroot .'/local/compatability_test/js/PluginDetect_Java_Flash.js"></script>
-	<script src="'.$CFG->wwwroot .'/local/compatability_test/js/scripts.js"></script>
-	<script>var uptodateFlag = true;</script>
-	';
-
-
 function local_compatability_test_build_view() {
     $tablebody = '';
     if (local_compatability_test_enable_java_check()) {
         $minjavaversion = local_compatability_test_min_version_java();
+
         $tablebody .= '
 			<tr><td>Java</td><td id="users-java">TODO</td>
 		';
@@ -153,61 +144,71 @@ function local_compatability_test_force_view_page() {
     }
 }
 
+global $COURSE, $USER, $DB, $CFG, $PAGE;
+
+
+$CFG->additionalhtmlhead .= '
+    <script src="'.$CFG->wwwroot .'/local/compatability_test/js/PluginDetect_Java_Flash.js"></script>
+    <script src="'.$CFG->wwwroot .'/local/compatability_test/js/scripts.js"></script>
+    <script>var uptodateFlag = true;</script>
+    ';
+
+
 if (local_compatability_test_enable_browser_check()) {
-	if (local_compatability_test_enable_chrome_check()) {
-	$minChrome = local_compatability_test_min_version_chrome();
-	var_dump($minChrome);
-	$CFG->additionalhtmlhead .= '
-		<script>
-		    if(checkBrowser("Chrome")){
-				isMinBrowser("Chrome",\''. $minChrome .'\');
-			}
-		</script>
-	';
-	}
-	if (local_compatability_test_enable_gecko_check()) {
-	$CFG->additionalhtmlhead .= '
-		<script>
-			checkBrowser("Gecko");
-		</script>
-	';
-	}
-	if (local_compatability_test_enable_opera_check()) {
-	$CFG->additionalhtmlhead .= '
-		<script>
-			checkBrowser("Opera");
-		</script>
-	';
-	}
-	if (local_compatability_test_enable_safari_check()) {
-	$CFG->additionalhtmlhead .= '
-		<script>
-			checkBrowser("Safari");
-		</script>
-	';
-	}
+    if (local_compatability_test_enable_chrome_check()) {
+    $minChrome = local_compatability_test_min_version_chrome();
+    var_dump($minChrome);
+    $CFG->additionalhtmlhead .= '
+        <script>
+            if(checkBrowser("Chrome")){
+                isMinBrowser("Chrome",\''. $minChrome .'\');
+            }
+        </script>
+    ';
+    }
+    if (local_compatability_test_enable_gecko_check()) {
+    $CFG->additionalhtmlhead .= '
+        <script>
+            checkBrowser("Gecko");
+        </script>
+    ';
+    }
+    if (local_compatability_test_enable_opera_check()) {
+    $CFG->additionalhtmlhead .= '
+        <script>
+            checkBrowser("Opera");
+        </script>
+    ';
+    }
+    if (local_compatability_test_enable_safari_check()) {
+    $CFG->additionalhtmlhead .= '
+        <script>
+            checkBrowser("Safari");
+        </script>
+    ';
+    }
 }
 if (local_compatability_test_enable_java_check()) {
     $minjava = local_compatability_test_min_version_java();
     $CFG->additionalhtmlhead .= '
-		<script>
+        <script>
             checkJava('.$minjava.');
-		</script>
-	';
+        </script>
+    ';
 }
 if (local_compatability_test_enable_flash_check()) {
     $minflash = local_compatability_test_min_version_flash();
     $CFG->additionalhtmlhead .= '
-		<script>
+        <script>
             checkFlash('.$minflash.');
-		</script>
-	';
+        </script>
+    ';
 }
 if (local_compatability_test_force_view_page()) {
     if (! is_siteadmin()) {
         $CFG->additionalhtmlhead .= '
         <script>
-		forceStatusPage(\''. $CFG->wwwroot .'/local/compatability_test/view.php' .'\');
+        forceStatusPage(\''. $CFG->wwwroot .'/local/compatability_test/view.php' .'\');
         </script>
         ';
     }
@@ -216,10 +217,10 @@ $bannerfailure = get_string('banner_failure', 'local_compatability_test');
 $bannerlink = get_string('banner_link', 'local_compatability_test');
 $link = $CFG->wwwroot . '/local/compatability_test/view.php';
 $CFG->additionalhtmlfooter .= '
-	<script>
-		updateUserView();
-	</script>
-	<script>
-		checkDisplayBanner(uptodateFlag, \''. $bannerfailure .'\', \''. $link .'\', \''. $bannerlink .'\');
-	</script>
+    <script>
+        updateUserView();
+    </script>
+    <script>
+        checkDisplayBanner(uptodateFlag, \''. $bannerfailure .'\', \''. $link .'\', \''. $bannerlink .'\');
+    </script>
 ';

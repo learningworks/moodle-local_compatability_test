@@ -1,5 +1,7 @@
 function checkJava(minjava) {
 	PluginDetect.getVersion(".");   // set delimiter
+	console.log("min java - " + minjava);
+	console.log(PluginDetect.isMinVersion("Flash", minjava));
 	switch(PluginDetect.isMinVersion("Java", minjava)) {
 		case 1:
 			console.log("Java is good enough");
@@ -15,9 +17,11 @@ function checkJava(minjava) {
 			console.log("case -0.2  plugin installed but not enabled. Some browsers occasionally reveal enough info to make this determination.");
 		break;
 		case -0.5:
+			console.log(".");
 		break;
 		case -1:
 			console.log("case -1 plugin is not installed or not enabled.");
+			uptodateFlag = false;
 		break;
 		case -1.5:
 			console.log("case -1.5  plugin status is unknown. This only occurs for certain plugins or certain browsers. ");
@@ -27,8 +31,11 @@ function checkJava(minjava) {
 		break;
 	}
 }
+
 function checkFlash(minflash) {
 	PluginDetect.getVersion(".");   // set delimiter
+	console.log("min flash - " + minflash);
+	console.log(PluginDetect.isMinVersion("Flash", minflash));
 	switch(PluginDetect.isMinVersion("Flash", minflash)) {
 	case 1:
 		console.log("Flash is good enough");
@@ -44,9 +51,11 @@ function checkFlash(minflash) {
 		console.log("case -0.2  plugin installed but not enabled. Some browsers occasionally reveal enough info to make this determination.");
 	break;
 	case -0.5:
+		console.log(".");
 	break;
 	case -1:
 		console.log("case -1 plugin is not installed or not enabled.");
+		uptodateFlag = false;
 	break;
 	case -1.5:
 		console.log("case -1.5  plugin status is unknown. This only occurs for certain plugins or certain browsers. ");
@@ -59,11 +68,25 @@ function checkFlash(minflash) {
 function updateUserView() {
 	if (window.location.href.indexOf("/compatability_test/view.php") > -1) {
 		var yourJava = document.getElementById("users-java");
-		yourJava.innerHTML = PluginDetect.getVersion("java");
+
+	var myJavaVer = PluginDetect.getVersion("java");
+
+	if (myJavaVer == null) {
+		myJavaVer = "not installed";
+	}		
+
+		yourJava.innerHTML = myJavaVer;
 	}
 	if (window.location.href.indexOf("/compatability_test/view.php") > -1) {
 		var yourFlash = document.getElementById("users-flash");
-		yourFlash.innerHTML = PluginDetect.getVersion("flash",true);
+
+		var myFlashVer = PluginDetect.getVersion("flash",true);
+
+		if (myFlashVer == null) {
+			myFlashVer = "not installed";
+		}	
+
+		yourFlash.innerHTML = myFlashVer;
 	}
 }
 
@@ -75,7 +98,7 @@ function displayBanner(check, bannerfailure, link, bannerlink) {
 		banner.innerHTML = "" + bannerfailure + " <a href=\"" + link + "\">" + bannerlink + "</a>";
 		document.getElementById("page").insertBefore(banner, document.getElementById("page").firstChild);
 	}else{
-	var banner = document.createElement("div");
+		var banner = document.createElement("div");
 		banner.className = "alert alert-success";
 		banner.style.textAlign = "center";
 		banner.innerHTML = "Your browser is ready";
@@ -126,19 +149,20 @@ function checkBrowser(browser) {
  
 }
 function isMinBrowser(browser,minVersion) {
-var currentVersion;
-minVersion = minVersion.split('.');
-var uptodate = true;
+	var currentVersion;
+	minVersion = minVersion.split('.');
+	var uptodate = false;
     switch (browser){
 	    case "Chrome":
 			currentVersion = PluginDetect.browser.verChrome;
 			currentVersion = currentVersion.split(',');
+
 			for (var i = 0; i < minVersion.length; i++){
-				if (minVersion[i] < currentVersion[i]){
-					uptodate = false;
+				if (minVersion[i] <= currentVersion[i]){
+					uptodate = true;
 				}
 			}
-			
+
 			console.log(uptodate);
 		break;
 		case "Gecko":
