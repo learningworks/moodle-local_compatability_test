@@ -1,7 +1,6 @@
 function checkJava(minjava) {
 	PluginDetect.getVersion(".");   // set delimiter
-	console.log("min java - " + minjava);
-	console.log(PluginDetect.isMinVersion("Flash", minjava));
+
 	switch(PluginDetect.isMinVersion("Java", minjava)) {
 		case 1:
 			console.log("Java is good enough");
@@ -34,8 +33,7 @@ function checkJava(minjava) {
 
 function checkFlash(minflash) {
 	PluginDetect.getVersion(".");   // set delimiter
-	console.log("min flash - " + minflash);
-	console.log(PluginDetect.isMinVersion("Flash", minflash));
+
 	switch(PluginDetect.isMinVersion("Flash", minflash)) {
 	case 1:
 		console.log("Flash is good enough");
@@ -65,28 +63,42 @@ function checkFlash(minflash) {
 	break;
 	}
 }
-function updateUserView() {
+function updateUserView(enabled) {
 	if (window.location.href.indexOf("/compatability_test/view.php") > -1) {
-		var yourJava = document.getElementById("users-java");
+		if (enabled["java"]) {
+			var yourJava = document.getElementById("users-java");
 
-	var myJavaVer = PluginDetect.getVersion("java");
+			var myJavaVer = PluginDetect.getVersion("java");
 
-	if (myJavaVer == null) {
-		myJavaVer = "not installed";
-	}		
+			if (myJavaVer == null) {
+				myJavaVer = "not installed";
+			}		
 
-		yourJava.innerHTML = myJavaVer;
-	}
-	if (window.location.href.indexOf("/compatability_test/view.php") > -1) {
-		var yourFlash = document.getElementById("users-flash");
+			yourJava.innerHTML = myJavaVer;
+		}
+		if (enabled["flash"]) {
+			var yourFlash = document.getElementById("users-flash");
 
-		var myFlashVer = PluginDetect.getVersion("flash",true);
+			var myFlashVer = PluginDetect.getVersion("flash",true);
 
-		if (myFlashVer == null) {
-			myFlashVer = "not installed";
-		}	
+			if (myFlashVer == null) {
+				myFlashVer = "not installed";
+			}	
 
-		yourFlash.innerHTML = myFlashVer;
+			yourFlash.innerHTML = myFlashVer;
+		}
+		if (enabled["chrome"]) {
+			var yourChrome = document.getElementById("users-chrome");
+
+			var myChromeVer = PluginDetect.browser.verChrome;
+			myChromeVer = myChromeVer.replace(/,/g, ".");
+
+			if (myChromeVer == null) {
+				myChromeVer = "not installed";
+			}	
+
+			yourChrome.innerHTML = myChromeVer;
+		}
 	}
 }
 
@@ -178,4 +190,6 @@ function isMinBrowser(browser,minVersion) {
 			console.log(PluginDetect.browser.verSafari);
 		break;
     }
+
+    return uptodate;
 }

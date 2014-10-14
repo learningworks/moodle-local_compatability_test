@@ -42,7 +42,28 @@ echo $OUTPUT->header();
 		<table class="generaltable">
 			<thead>
 				<th class="header c0">
-					Plugin name
+					Application/Plugin
+				</th>
+				<th class="header c1">
+					Your Version
+				</th>
+				<th class="header c2">
+					Minimum Version Required
+				</th>
+				<th class="header c3">
+					Latest Version
+				</th>
+			</thead>
+			<tbody>
+				<?php
+                	local_compatability_test_build_view();
+                ?>
+			</tbody>
+		</table>
+		<!--<table class="generaltable">
+			<thead>
+				<th class="header c0">
+					Browser
 				</th>
 				<th class="header c1">
 					Your Version
@@ -59,7 +80,7 @@ echo $OUTPUT->header();
                 local_compatability_test_build_view();
                 ?>
 			</tbody>
-		</table>
+		</table>-->
 	</div>
 <?php
 

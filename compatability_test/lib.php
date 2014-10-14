@@ -47,7 +47,35 @@ function local_compatability_test_build_view() {
             <td>'.$minflashversion.'</td><td><a href="http://get.adobe.com/flashplayer/">Visit Website</a></td></tr>
         ';
     }
+    if (local_compatability_test_enable_browser_check() && local_compatability_test_enable_chrome_check()) {    
+        $minchromeversion = local_compatability_test_min_version_chrome();
+        $tablebody .= '
+            <tr><td>Chrome</td><td id="users-chrome">TODO</td>
+        ';
+        $tablebody .= '
+            <td>'.$minchromeversion.'</td><td><a href="http://www.google.com/chrome/browser/">Visit Website</a></td></tr>
+        ';
+    }
     echo $tablebody;
+}
+
+function local_compatability_test_check_enabled() {
+    $enabled = array("chrome" => false, "flash" => false, "java" => false);
+
+    // Flash
+    if (local_compatability_test_enable_flash_check())
+        $enabled["flash"] = true;
+
+    if (local_compatability_test_enable_java_check()) {
+        $enabled["java"] = true;
+    }
+
+    if (local_compatability_test_enable_browser_check()) {
+        if (local_compatability_test_enable_chrome_check())
+            $enabled["chrome"] = true;
+    }
+
+    return json_encode($enabled);
 }
 
 function local_compatability_test_enable_browser_check() {
@@ -68,7 +96,6 @@ function local_compatability_test_enable_chrome_check() {
 }
 function local_compatability_test_min_version_chrome() {
     $enabled = get_config('local_compatability_test', 'min_version_chrome');
-	var_dump($enabled);
     if (empty($enabled)) {
         return false;
     } else {
@@ -148,67 +175,66 @@ global $COURSE, $USER, $DB, $CFG, $PAGE;
 
 
 $CFG->additionalhtmlhead .= '
-    <script src="'.$CFG->wwwroot .'/local/compatability_test/js/PluginDetect_Java_Flash.js"></script>
-    <script src="'.$CFG->wwwroot .'/local/compatability_test/js/scripts.js"></script>
-    <script>var uptodateFlag = true;</script>
-    ';
+<script src="'.$CFG->wwwroot .'/local/compatability_test/js/PluginDetect_Java_Flash.js"></script>
+<script src="'.$CFG->wwwroot .'/local/compatability_test/js/scripts.js"></script>
+<script>var uptodateFlag = true;</script>
+';
 
 
 if (local_compatability_test_enable_browser_check()) {
     if (local_compatability_test_enable_chrome_check()) {
-    $minChrome = local_compatability_test_min_version_chrome();
-    var_dump($minChrome);
-    $CFG->additionalhtmlhead .= '
+        $minChrome = local_compatability_test_min_version_chrome();
+        $CFG->additionalhtmlhead .= '
         <script>
             if(checkBrowser("Chrome")){
-                isMinBrowser("Chrome",\''. $minChrome .'\');
+                uptodateFlag = isMinBrowser("Chrome",\''. $minChrome .'\');
             }
         </script>
-    ';
+        ';
     }
     if (local_compatability_test_enable_gecko_check()) {
-    $CFG->additionalhtmlhead .= '
+        $CFG->additionalhtmlhead .= '
         <script>
             checkBrowser("Gecko");
         </script>
-    ';
+        ';
     }
     if (local_compatability_test_enable_opera_check()) {
-    $CFG->additionalhtmlhead .= '
+        $CFG->additionalhtmlhead .= '
         <script>
             checkBrowser("Opera");
         </script>
-    ';
+        ';
     }
     if (local_compatability_test_enable_safari_check()) {
-    $CFG->additionalhtmlhead .= '
+        $CFG->additionalhtmlhead .= '
         <script>
             checkBrowser("Safari");
         </script>
-    ';
+        ';
     }
 }
 if (local_compatability_test_enable_java_check()) {
     $minjava = local_compatability_test_min_version_java();
     $CFG->additionalhtmlhead .= '
-        <script>
-            checkJava('.$minjava.');
-        </script>
+    <script>
+        checkJava('.$minjava.');
+    </script>
     ';
 }
 if (local_compatability_test_enable_flash_check()) {
     $minflash = local_compatability_test_min_version_flash();
     $CFG->additionalhtmlhead .= '
-        <script>
-            checkFlash('.$minflash.');
-        </script>
+    <script>
+        checkFlash('.$minflash.');
+    </script>
     ';
 }
 if (local_compatability_test_force_view_page()) {
     if (! is_siteadmin()) {
         $CFG->additionalhtmlhead .= '
         <script>
-        forceStatusPage(\''. $CFG->wwwroot .'/local/compatability_test/view.php' .'\');
+            forceStatusPage(\''. $CFG->wwwroot .'/local/compatability_test/view.php' .'\');
         </script>
         ';
     }
@@ -217,10 +243,10 @@ $bannerfailure = get_string('banner_failure', 'local_compatability_test');
 $bannerlink = get_string('banner_link', 'local_compatability_test');
 $link = $CFG->wwwroot . '/local/compatability_test/view.php';
 $CFG->additionalhtmlfooter .= '
-    <script>
-        updateUserView();
-    </script>
-    <script>
-        checkDisplayBanner(uptodateFlag, \''. $bannerfailure .'\', \''. $link .'\', \''. $bannerlink .'\');
-    </script>
+<script>
+    updateUserView(' . local_compatability_test_check_enabled() . ');
+</script>
+<script>
+    checkDisplayBanner(uptodateFlag, \''. $bannerfailure .'\', \''. $link .'\', \''. $bannerlink .'\');
+</script>
 ';
