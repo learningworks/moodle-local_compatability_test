@@ -57,6 +57,11 @@ echo $OUTPUT->header();
 			<tbody id="generaltable">
 			</tbody>
 		</table>
+		<p>
+			<?php
+				echo local_compatability_test_admin_feedback();
+			?>
+		</p>
 	</div>
 <?php
 

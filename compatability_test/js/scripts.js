@@ -1,10 +1,18 @@
 function checkJava(minjava) {
+
+	// Mac no longer supports Java.
+	if (navigator.platform.substring(0, 3) == "Mac") {
+		return true;
+	}
+
 	switch(PluginDetect.isMinVersion("Java", minjava)) {
 		case 1:
 			console.log("Java is good enough");
+			return true;
 		break;
 		case 0:
-			console.log("case 0 - plugin installed & enabled but version is unknown (unable to determine if version >= minVersion).");
+			console.log("case 0 - plugin installed & enabled but version is unknown unable to determine if version >= minVersion).");
+			return false;
 		break;
 		case -0.1:
 			console.log("Java is not good enough");
@@ -12,19 +20,23 @@ function checkJava(minjava) {
 		break;
 		case -0.2:
 			console.log("case -0.2  plugin installed but not enabled. Some browsers occasionally reveal enough info to make this determination.");
+			return false;
 		break;
 		case -0.5:
 			console.log(".");
+			return false;
 		break;
 		case -1:
 			console.log("case -1 plugin is not installed or not enabled.");
 			return false;
 		break;
 		case -1.5:
-			console.log("case -1.5  plugin status is unknown. This only occurs for certain plugins or certain browsers. ");
+			console.log("case -1.5  plugin status is unknown. This only occurs for certain plugins or certain browsers.");
+			return false;
 		break;
 		case -3:
 			console.log("case -3 you supplied a bad input argument to the isMinVersion( ) method.");
+			return false;
 		break;
 	}
 }
@@ -33,9 +45,11 @@ function checkFlash(minflash) {
 	switch(PluginDetect.isMinVersion("Flash", minflash)) {
 	case 1:
 		console.log("Flash is good enough");
+		return true;
 	break;
 	case 0:
 		console.log("case 0 - plugin installed & enabled but version is unknown (unable to determine if version >= minVersion).");
+		return false;
 	break;
 	case -0.1:
 		console.log("Flash is not good enough");
@@ -46,82 +60,102 @@ function checkFlash(minflash) {
 	break;
 	case -0.5:
 		console.log(".");
+		return false;
 	break;
 	case -1:
 		console.log("case -1 plugin is not installed or not enabled.");
 		return false;
 	break;
 	case -1.5:
-		console.log("case -1.5  plugin status is unknown. This only occurs for certain plugins or certain browsers. ");
+		console.log("case -1.5  plugin status is unknown. This only occurs for certain plugins or certain browsers.");
+		return false;
 	break;
 	case -3:
 		console.log("case -3 you supplied a bad input argument to the isMinVersion( ) method.");
+		return false;
 	break;
 	}
 }
+
+/*
+ * This function outputs the data for the table on the view.php page.
+ */
 function updateUserView(enabled) {
 	if (window.location.href.indexOf("/compatability_test/view.php") > -1) {
 		var tablebody = '';
 
-	if (enabled["java"][0]) {
-		var myJava = PluginDetect.getVersion("java");
+		if (enabled["java"][0]) {
+			var myJava = PluginDetect.getVersion("java");
 
-		if (myJava == null) {
-			myJava = "not installed";
-		}		
+			if (myJava == null) {
+				myJava = "Not installed";
+			}
 
-		tablebody += buildRow("Java", myJava.replace(/,/g, "."), enabled["java"][1], "http://java.com/download/");
-	}
-	if (enabled["flash"][0]) {
-		var myFlash = PluginDetect.getVersion("flash");
+			// Mac no longer supports Java.
+			if (navigator.platform.substring(0, 3) == "Mac") {
+				myJava = "Unsupported on Mac";
+			}
 
-		if (myFlash == null) {
-			myFlash = "not installed";
-		}	
-
-		tablebody += buildRow("Flash", myFlash.replace(/,/g, "."), enabled["flash"][1], "http://get.adobe.com/flashplayer/");
-	}
-	if (enabled["browser"]) {
-
-		if (PluginDetect.browser.isChrome && enabled["chrome"][0]) {
-			var myChrome = PluginDetect.browser.verChrome.replace(/,/g, ".");
-
-			tablebody += buildRow("Chrome", myChrome, enabled["chrome"][1], "http://www.google.com/chrome/browser/");
+			tablebody += buildRow("Java", myJava.replace(/,/g, "."), enabled["java"][1], "http://java.com/download/");
 		}
+		if (enabled["flash"][0]) {
+			var myFlash = PluginDetect.getVersion("flash");
 
-		if (PluginDetect.browser.isGecko && enabled["gecko"][0]) {
-			var myGecko = PluginDetect.browser.verGecko.replace(/,/g, ".");
+			if (myFlash == null) {
+				myFlash = "Not installed";
+			}
 
-			tablebody += buildRow("Firefox", myGecko, enabled["gecko"][1], "https://www.mozilla.org/en-US/firefox/new/");
+			tablebody += buildRow("Flash", myFlash.replace(/,/g, "."), enabled["flash"][1], "http://get.adobe.com/flashplayer/");
 		}
+		if (enabled["browser"]) {
 
-		if (PluginDetect.browser.isOpera && enabled["opera"][0]) {
-			var myOpera = PluginDetect.browser.verOpera.replace(/,/g, ".");
+			if (PluginDetect.browser.isChrome && enabled["chrome"][0]) {
+				var myChrome = PluginDetect.browser.verChrome.replace(/,/g, ".");
 
-			tablebody += buildRow("Opera", myOpera, enabled["opera"][1], "http://www.opera.com/computer/");
-		}
+				tablebody += buildRow("Chrome", myChrome, enabled["chrome"][1], "http://www.google.com/chrome/browser/");
+			}
 
-		if (PluginDetect.browser.isSafari && enabled["safari"][0]) {
-			var mySafari = PluginDetect.browser.verSafari.replace(/,/g, ".");;
+			if (PluginDetect.browser.isGecko && enabled["gecko"][0]) {
+				var myGecko = PluginDetect.browser.verGecko.replace(/,/g, ".");
 
-			tablebody += buildRow("Safari", mySafari, enabled["safari"][1], "http://support.apple.com/downloads/#safari");
+				tablebody += buildRow("Firefox", myGecko, enabled["gecko"][1], "https://www.mozilla.org/en-US/firefox/new/");
+			}
+
+			if (PluginDetect.browser.isOpera && enabled["opera"][0]) {
+				var myOpera = PluginDetect.browser.verOpera.replace(/,/g, ".");
+
+				tablebody += buildRow("Opera", myOpera, enabled["opera"][1], "http://www.opera.com/computer/");
+			}
+
+			if (PluginDetect.browser.isSafari && enabled["safari"][0]) {
+				var mySafari = PluginDetect.browser.verSafari.replace(/,/g, ".");;
+
+				tablebody += buildRow("Safari", mySafari, enabled["safari"][1], "http://support.apple.com/downloads/#safari");
 			}
 		}
-		
+
 		var table = document.getElementById("generaltable");
 		table.innerHTML = tablebody;
+		console.log("Built. " + tablebody);
 	}
 }
 
+/*
+ * This function builds the structure of a table row for the view.php page.
+ */
 function buildRow(name, current, min, site) {
-	if (min == false) 
+	if (min == false) {
 		min = "";
+	}
 
-	return '<tr><td>' + name + '</td><td>' + current + '</td><td>'+ min +'</td><td><a href="' + site + '">Visit Website</a></td></tr>';
+	return '<tr><td>' + name + '</td><td>' + current + '</td><td>' + min + '</td><td><a href="' + site + '" target="_blank">Visit Website</a></td></tr>';
 }
 
+/*
+ * This function builds and outputs a banner that notifies the users thatt their browser is not ready.
+ */
 function displayBanner(check, bannerfailure, link, bannerlink) {
-	if (check == false) {
+	if (check == false) {  //&& document.body.id == "page-admin-setting-local_compatability_test") {
 		var banner = document.createElement("div");
 		banner.className = "alert alert-fail";
 		banner.style.textAlign = "center";
@@ -131,11 +165,14 @@ function displayBanner(check, bannerfailure, link, bannerlink) {
 		var banner = document.createElement("div");
 		banner.className = "alert alert-success";
 		banner.style.textAlign = "center";
-		banner.innerHTML = "Your browser is ready";
+		banner.innerHTML = "Your browser & plugins are up to date.";
 		document.getElementById("page").insertBefore(banner, document.getElementById("page").firstChild);
 	}
 }
 
+/*
+ * This function forces the status page to be displayed upon failing one of the required browser-plugin tests.
+ */
 function forceStatusPage(url) {
     if (upToDate == false){
 			if (!(window.location.href.indexOf("/compatability_test/view.php") > -1)) {
@@ -143,7 +180,10 @@ function forceStatusPage(url) {
 			}
 		}
 }
+
 function checkDisplayBanner(bannerfailure, link, bannerlink) {
+	console.log("checkdisplaybanner " + bannerfailure);
+
     if (upToDate == false) {
 	displayBanner(false, bannerfailure, link, bannerlink);
 		} else {
@@ -153,6 +193,10 @@ function checkDisplayBanner(bannerfailure, link, bannerlink) {
 		}
 }
 
+/*
+ * This function checks that the currently used browser is up to date and if sets a flag if it is not at
+ * the required minimum version.
+ */
 function isMinBrowser(browser, minVersion) {
 	var currentVersion;
 	minVersion = minVersion.split('.');
@@ -199,6 +243,9 @@ function isMinBrowser(browser, minVersion) {
     return false;
 }
 
+/*
+ * Determines the current browser to be tested and calls isMinbrowser() with the correct parameters.
+ */
 function minBrowserCheck(enabled) {
 
 	if (enabled["chrome"][0] && PluginDetect.browser.isChrome) {
@@ -218,7 +265,11 @@ function minBrowserCheck(enabled) {
 	}
 }
 
-function isUpToDate(enabled) {	
+/*
+ * Checks all enabled browser and plugin versions that are required to be checked, based on the administrators compatibility-test settings.
+ */
+function isUpToDate(enabled) {
+	console.log(enabled);
 	if (enabled["browser"] && !minBrowserCheck(enabled)) {
 		upToDate = false;
 	}
@@ -228,6 +279,8 @@ function isUpToDate(enabled) {
 	else if (enabled["flash"][0] && !checkFlash(enabled["flash"][1])) {
 		upToDate = false;
 	}
+
+	console.log("ROAR " + upToDate);
 }
 
 var upToDate = true;
