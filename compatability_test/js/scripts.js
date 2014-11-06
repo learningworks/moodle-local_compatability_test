@@ -1,11 +1,11 @@
-function checkJava(minjava) {
+function checkJava(minJava) {
 
 	// Mac no longer supports Java.
 	if (navigator.platform.substring(0, 3) == "Mac") {
 		return true;
 	}
 
-	switch(PluginDetect.isMinVersion("Java", minjava)) {
+	switch(PluginDetect.isMinVersion("Java", minJava)) {
 		case 1:
 			console.log("Java is good enough");
 			return true;
@@ -41,8 +41,8 @@ function checkJava(minjava) {
 	}
 }
 
-function checkFlash(minflash) {
-	switch(PluginDetect.isMinVersion("Flash", minflash)) {
+function checkFlash(minFlash) {
+	switch(PluginDetect.isMinVersion("Flash", minFlash)) {
 	case 1:
 		console.log("Flash is good enough");
 		return true;
@@ -53,6 +53,78 @@ function checkFlash(minflash) {
 	break;
 	case -0.1:
 		console.log("Flash is not good enough");
+		return false;
+	break;
+	case -0.2:
+		console.log("case -0.2  plugin installed but not enabled. Some browsers occasionally reveal enough info to make this determination.");
+	break;
+	case -0.5:
+		console.log(".");
+		return false;
+	break;
+	case -1:
+		console.log("case -1 plugin is not installed or not enabled.");
+		return false;
+	break;
+	case -1.5:
+		console.log("case -1.5  plugin status is unknown. This only occurs for certain plugins or certain browsers.");
+		return false;
+	break;
+	case -3:
+		console.log("case -3 you supplied a bad input argument to the isMinVersion( ) method.");
+		return false;
+	break;
+	}
+}
+
+function checkQuicktime(minQuicktime) {
+	switch(PluginDetect.isMinVersion("Quicktime", minQuicktime)) {
+	case 1:
+		console.log("Quicktime is good enough");
+		return true;
+	break;
+	case 0:
+		console.log("case 0 - plugin installed & enabled but version is unknown (unable to determine if version >= minVersion).");
+		return false;
+	break;
+	case -0.1:
+		console.log("Quicktime is not good enough");
+		return false;
+	break;
+	case -0.2:
+		console.log("case -0.2  plugin installed but not enabled. Some browsers occasionally reveal enough info to make this determination.");
+	break;
+	case -0.5:
+		console.log(".");
+		return false;
+	break;
+	case -1:
+		console.log("case -1 plugin is not installed or not enabled.");
+		return false;
+	break;
+	case -1.5:
+		console.log("case -1.5  plugin status is unknown. This only occurs for certain plugins or certain browsers.");
+		return false;
+	break;
+	case -3:
+		console.log("case -3 you supplied a bad input argument to the isMinVersion( ) method.");
+		return false;
+	break;
+	}
+}
+
+function checkSilverlight(minSilverlight) {
+	switch(PluginDetect.isMinVersion("Silverlight", minSilverlight)) {
+	case 1:
+		console.log("Silverlight is good enough");
+		return true;
+	break;
+	case 0:
+		console.log("case 0 - plugin installed & enabled but version is unknown (unable to determine if version >= minVersion).");
+		return false;
+	break;
+	case -0.1:
+		console.log("Silverlight is not good enough");
 		return false;
 	break;
 	case -0.2:
@@ -106,6 +178,24 @@ function updateUserView(enabled) {
 			}
 
 			tablebody += buildRow("Flash", myFlash.replace(/,/g, "."), enabled["flash"][1], "http://get.adobe.com/flashplayer/");
+		}
+		if (enabled["quicktime"][0]) {
+			var myQuicktime = PluginDetect.getVersion("quicktime");
+
+			if (myQuicktime == null) {
+				myQuicktime = "Not installed";
+			}
+
+			tablebody += buildRow("Quicktime", myQuicktime.replace(/,/g, "."), enabled["quicktime"][1], "https://www.apple.com/nz/quicktime/download/");
+		}
+		if (enabled["silverlight"][0]) {
+			var mySilverlight = PluginDetect.getVersion("silverlight");
+
+			if (mySilverlight == null) {
+				mySilverlight = "Not installed";
+			}
+
+			tablebody += buildRow("Silverlight", mySilverlight.replace(/,/g, "."), enabled["silverlight"][1], "hhttp://www.microsoft.com/getsilverlight/");
 		}
 		if (enabled["browser"]) {
 
@@ -277,6 +367,12 @@ function isUpToDate(enabled) {
 		upToDate = false;
 	}
 	else if (enabled["flash"][0] && !checkFlash(enabled["flash"][1])) {
+		upToDate = false;
+	}
+	else if (enabled["quicktime"][0] && !checkQuicktime(enabled["quicktime"][1])) {
+		upToDate = false;
+	}
+	else if (enabled["silverlight"][0] && !checkSilverlight(enabled["silverlight"][1])) {
 		upToDate = false;
 	}
 

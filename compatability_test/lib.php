@@ -36,7 +36,9 @@ function local_compatability_test_check_enabled() {
         "opera" => array(false, local_compatability_test_min_version_opera()),
         "safari" => array(false, local_compatability_test_min_version_safari()),
         "flash" => array(false, local_compatability_test_min_version_flash()),
-        "java" => array(false, local_compatability_test_min_version_java()));
+        "java" => array(false, local_compatability_test_min_version_java()),
+        "quicktime" => array(false, local_compatability_test_min_version_quicktime()),
+        "silverlight" => array(false, local_compatability_test_min_version_silverlight()));
 
     // Flash.
     if (local_compatability_test_enable_flash_check()) {
@@ -45,6 +47,14 @@ function local_compatability_test_check_enabled() {
 
     if (local_compatability_test_enable_java_check()) {
         $enabled["java"][0] = true;
+    }
+
+    if (local_compatability_test_enable_quicktime_check()) {
+        $enabled["quicktime"][0] = true;
+    }
+
+    if (local_compatability_test_enable_silverlight_check()) {
+        $enabled["silverlight"][0] = true;
     }
 
     if (local_compatability_test_enable_browser_check()) {
@@ -89,14 +99,6 @@ function local_compatability_test_enable_chrome_check() {
         return true;
     }
 }
-function local_compatability_test_min_version_chrome() {
-    $enabled = get_config('local_compatability_test', 'min_version_chrome');
-    if (empty($enabled)) {
-        return false;
-    } else {
-        return $enabled;
-    }
-}
 function local_compatability_test_enable_gecko_check() {
     $enabled = get_config('local_compatability_test', 'enable_gecko_check');
     if (empty($enabled)) {
@@ -121,8 +123,32 @@ function local_compatability_test_enable_safari_check() {
         return true;
     }
 }
+function local_compatability_test_enable_flash_check() {
+    $enabled = get_config('local_compatability_test', 'enable_flash_check');
+    if (empty($enabled)) {
+        return false;
+    } else {
+        return true;
+    }
+}
 function local_compatability_test_enable_java_check() {
     $enabled = get_config('local_compatability_test', 'enable_java_check');
+    if (empty($enabled)) {
+        return false;
+    } else {
+        return true;
+    }
+}
+function local_compatability_test_enable_quicktime_check() {
+    $enabled = get_config('local_compatability_test', 'enable_quicktime_check');
+    if (empty($enabled)) {
+        return false;
+    } else {
+        return true;
+    }
+}
+function local_compatability_test_enable_silverlight_check() {
+    $enabled = get_config('local_compatability_test', 'enable_silverlight_check');
     if (empty($enabled)) {
         return false;
     } else {
@@ -134,6 +160,14 @@ function local_compatability_test_enable_java_check() {
  * The following local_compatibility_test_min_version... functions out put the settings for the set minimum version, or false
  * if it has not been said; the setting is empty.
  */
+function local_compatability_test_min_version_flash() {
+    $enabled = get_config('local_compatability_test', 'min_version_flash');
+    if (empty($enabled)) {
+        return false;
+    } else {
+        return $enabled;
+    }
+}
 function local_compatability_test_min_version_java() {
     $enabled = get_config('local_compatability_test', 'min_version_java');
     if (empty($enabled)) {
@@ -142,16 +176,24 @@ function local_compatability_test_min_version_java() {
         return $enabled;
     }
 }
-function local_compatability_test_enable_flash_check() {
-    $enabled = get_config('local_compatability_test', 'enable_flash_check');
+function local_compatability_test_min_version_quicktime() {
+    $enabled = get_config('local_compatability_test', 'min_version_quicktime');
     if (empty($enabled)) {
         return false;
     } else {
-        return true;
+        return $enabled;
     }
 }
-function local_compatability_test_min_version_flash() {
-    $enabled = get_config('local_compatability_test', 'min_version_flash');
+function local_compatability_test_min_version_silverlight() {
+    $enabled = get_config('local_compatability_test', 'min_version_silverlight');
+    if (empty($enabled)) {
+        return false;
+    } else {
+        return $enabled;
+    }
+}
+function local_compatability_test_min_version_chrome() {
+    $enabled = get_config('local_compatability_test', 'min_version_chrome');
     if (empty($enabled)) {
         return false;
     } else {

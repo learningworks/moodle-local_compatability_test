@@ -120,4 +120,30 @@ if ($hassiteconfig) {
     $desc = get_string('min_version_flash_desc', 'local_compatability_test');
     $setting = new admin_setting_configtext('local_compatability_test/min_version_flash', $title, $desc, '15.0.0.0');
     $settings->add($setting);
+
+    $settings->add(new admin_setting_heading('local_compatability_test/quicktime_section',
+        get_string('quicktime_section', 'local_compatability_test'), ''));
+
+    $title = get_string('enable_quicktime_check', 'local_compatability_test');
+    $desc = get_string('enable_quicktime_check_desc', 'local_compatability_test');
+    $setting = new admin_setting_configcheckbox('local_compatability_test/enable_quicktime_check', $title, $desc, 0);
+    $settings->add($setting);
+
+    $title = get_string('min_version_quicktime', 'local_compatability_test');
+    $desc = get_string('min_version_quicktime_desc', 'local_compatability_test');
+    $setting = new admin_setting_configtext('local_compatability_test/min_version_quicktime', $title, $desc, '7.7.0.0');
+    $settings->add($setting);
+
+    $settings->add(new admin_setting_heading('local_compatability_test/silverlight_section',
+        get_string('silverlight_section', 'local_compatability_test'), ''));
+
+    $title = get_string('enable_silverlight_check', 'local_compatability_test');
+    $desc = get_string('enable_silverlight_check_desc', 'local_compatability_test');
+    $setting = new admin_setting_configcheckbox('local_compatability_test/enable_silverlight_check', $title, $desc, 0);
+    $settings->add($setting);
+
+    $title = get_string('min_version_silverlight', 'local_compatability_test');
+    $desc = get_string('min_version_silverlight_desc', 'local_compatability_test');
+    $setting = new admin_setting_configtext('local_compatability_test/min_version_silverlight', $title, $desc, '5.1.0.0');
+    $settings->add($setting);
 }

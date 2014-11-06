@@ -34,6 +34,8 @@ $string['admin_feedback_def'] = 'Enter your feedback here.';
 $string['browser_section'] = 'Browser Settings';
 $string['flash_section'] = 'Flash Settings';
 $string['java_section'] = 'Java Settings';
+$string['quicktime_section'] = 'Quicktime Settings';
+$string['silverlight_section'] = 'Silverlight Settings';
 
 $string['enable_browser_check'] = 'Enable Browser Checking';
 $string['enable_browser_check_desc'] = 'Enable browser version checking against set parameters.';
@@ -73,6 +75,20 @@ $string['min_version_flash'] = 'Minimum Flash Version';
 $string['min_version_flash_desc'] = 'The minimum version of Flash required to properly view the site.';
 $string['success_version_flash'] = 'You are running a sufficiently up-to-date Flash version.';
 $string['failure_version_flash'] = 'You are not running the latest version of Flash.';
+
+$string['enable_quicktime_check'] = 'Enable Quicktime Checking';
+$string['enable_quicktime_check_desc'] = 'Enable Quicktime version checking against set parameters.';
+$string['min_version_quicktime'] = 'Minimum Quicktime Version';
+$string['min_version_quicktime_desc'] = 'The minimum version of Quicktime required to properly view the site.';
+$string['success_version_quicktime'] = 'You are running a sufficiently up-to-date Quicktime version.';
+$string['failure_version_quicktime'] = 'You are not running the latest version of Quicktime.';
+
+$string['enable_silverlight_check'] = 'Enable Silverlight Checking';
+$string['enable_silverlight_check_desc'] = 'Enable Silverlight version checking against set parameters.';
+$string['min_version_silverlight'] = 'Minimum Silverlight Version';
+$string['min_version_silverlight_desc'] = 'The minimum version of Silverlight required to properly view the site.';
+$string['success_version_silverlight'] = 'You are running a sufficiently up-to-date Silverlight version.';
+$string['failure_version_silverlight'] = 'You are not running the latest version of Silverlight.';
 
 $string['banner_failure'] = 'Your browser and/or plugins are not up to date.';
 $string['banner_link'] = 'Click here for more information.';

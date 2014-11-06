@@ -58,9 +58,7 @@ echo $OUTPUT->header();
 			</tbody>
 		</table>
 		<p>
-			<?php
-				echo local_compatability_test_admin_feedback();
-			?>
+			<?php echo local_compatability_test_admin_feedback(); ?>
 		</p>
 	</div>
 <?php
