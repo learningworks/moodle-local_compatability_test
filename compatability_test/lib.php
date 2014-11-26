@@ -38,7 +38,8 @@ function local_compatability_test_check_enabled() {
         "flash" => array(false, local_compatability_test_min_version_flash()),
         "java" => array(false, local_compatability_test_min_version_java()),
         "quicktime" => array(false, local_compatability_test_min_version_quicktime()),
-        "silverlight" => array(false, local_compatability_test_min_version_silverlight()));
+        "silverlight" => array(false, local_compatability_test_min_version_silverlight()),
+        "visit_website" => get_string('visit_website' , 'local_compatability_test')); // string.
 
     // Flash.
     if (local_compatability_test_enable_flash_check()) {

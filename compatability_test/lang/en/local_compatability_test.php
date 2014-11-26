@@ -93,3 +93,10 @@ $string['failure_version_silverlight'] = 'You are not running the latest version
 $string['banner_failure'] = 'Your browser and/or plugins are not up to date.';
 $string['banner_link'] = 'Click here for more information.';
 $string['compatability_test:forceredirect'] = 'Force view status page';
+
+$string['header_1'] = 'Application/Plugin';
+$string['header_2'] = 'Your Version';
+$string['header_3'] = 'Minimum Version Required';
+$string['header_4'] = 'Latest Version';
+
+$string['visit_website'] = 'Visit Website';

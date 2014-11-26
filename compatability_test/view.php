@@ -42,16 +42,16 @@ echo $OUTPUT->header();
 		<table class="generaltable">
 			<thead>
 				<th class="header c0">
-					Application/Plugin
+					<?php echo get_string('header_1', 'local_compatability_test'); ?>
 				</th>
 				<th class="header c1">
-					Your Version
+					<?php echo get_string('header_2', 'local_compatability_test'); ?>
 				</th>
 				<th class="header c2">
-					Minimum Version Required
+					<?php echo get_string('header_3', 'local_compatability_test'); ?>
 				</th>
 				<th class="header c3">
-					Latest Version
+					<?php echo get_string('header_4', 'local_compatability_test'); ?>
 				</th>
 			</thead>
 			<tbody id="generaltable">

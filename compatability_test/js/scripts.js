@@ -168,7 +168,7 @@ function updateUserView(enabled) {
 				myJava = "Unsupported on Mac";
 			}
 
-			tablebody += buildRow("Java", myJava.replace(/,/g, "."), enabled["java"][1], "http://java.com/download/");
+			tablebody += buildRow("Java", myJava.replace(/,/g, "."), enabled["java"][1], "http://java.com/download/", enabled['visit_website']);
 		}
 		if (enabled["flash"][0]) {
 			var myFlash = PluginDetect.getVersion("flash");
@@ -177,7 +177,7 @@ function updateUserView(enabled) {
 				myFlash = "Not installed";
 			}
 
-			tablebody += buildRow("Flash", myFlash.replace(/,/g, "."), enabled["flash"][1], "http://get.adobe.com/flashplayer/");
+			tablebody += buildRow("Flash", myFlash.replace(/,/g, "."), enabled["flash"][1], "http://get.adobe.com/flashplayer/", enabled['visit_website']);
 		}
 		if (enabled["quicktime"][0]) {
 			var myQuicktime = PluginDetect.getVersion("quicktime");
@@ -186,7 +186,7 @@ function updateUserView(enabled) {
 				myQuicktime = "Not installed";
 			}
 
-			tablebody += buildRow("Quicktime", myQuicktime.replace(/,/g, "."), enabled["quicktime"][1], "https://www.apple.com/nz/quicktime/download/");
+			tablebody += buildRow("Quicktime", myQuicktime.replace(/,/g, "."), enabled["quicktime"][1], "https://www.apple.com/nz/quicktime/download/", enabled['visit_website']);
 		}
 		if (enabled["silverlight"][0]) {
 			var mySilverlight = PluginDetect.getVersion("silverlight");
@@ -195,50 +195,49 @@ function updateUserView(enabled) {
 				mySilverlight = "Not installed";
 			}
 
-			tablebody += buildRow("Silverlight", mySilverlight.replace(/,/g, "."), enabled["silverlight"][1], "hhttp://www.microsoft.com/getsilverlight/");
+			tablebody += buildRow("Silverlight", mySilverlight.replace(/,/g, "."), enabled["silverlight"][1], "hhttp://www.microsoft.com/getsilverlight/", enabled['visit_website']);
 		}
 		if (enabled["browser"]) {
 
 			if (PluginDetect.browser.isChrome && enabled["chrome"][0]) {
 				var myChrome = PluginDetect.browser.verChrome.replace(/,/g, ".");
 
-				tablebody += buildRow("Chrome", myChrome, enabled["chrome"][1], "http://www.google.com/chrome/browser/");
+				tablebody += buildRow("Chrome", myChrome, enabled["chrome"][1], "http://www.google.com/chrome/browser/", enabled['visit_website']);
 			}
 
 			if (PluginDetect.browser.isGecko && enabled["gecko"][0]) {
 				var myGecko = PluginDetect.browser.verGecko.replace(/,/g, ".");
 
-				tablebody += buildRow("Firefox", myGecko, enabled["gecko"][1], "https://www.mozilla.org/en-US/firefox/new/");
+				tablebody += buildRow("Firefox", myGecko, enabled["gecko"][1], "https://www.mozilla.org/en-US/firefox/new/", enabled['visit_website']);
 			}
 
 			if (PluginDetect.browser.isOpera && enabled["opera"][0]) {
 				var myOpera = PluginDetect.browser.verOpera.replace(/,/g, ".");
 
-				tablebody += buildRow("Opera", myOpera, enabled["opera"][1], "http://www.opera.com/computer/");
+				tablebody += buildRow("Opera", myOpera, enabled["opera"][1], "http://www.opera.com/computer/", enabled['visit_website']);
 			}
 
 			if (PluginDetect.browser.isSafari && enabled["safari"][0]) {
 				var mySafari = PluginDetect.browser.verSafari.replace(/,/g, ".");;
 
-				tablebody += buildRow("Safari", mySafari, enabled["safari"][1], "http://support.apple.com/downloads/#safari");
+				tablebody += buildRow("Safari", mySafari, enabled["safari"][1], "http://support.apple.com/downloads/#safari", enabled['visit_website']);
 			}
 		}
 
 		var table = document.getElementById("generaltable");
 		table.innerHTML = tablebody;
-		console.log("Built. " + tablebody);
 	}
 }
 
 /*
  * This function builds the structure of a table row for the view.php page.
  */
-function buildRow(name, current, min, site) {
+function buildRow(name, current, min, site, visit) {
 	if (min == false) {
 		min = "";
 	}
 
-	return '<tr><td>' + name + '</td><td>' + current + '</td><td>' + min + '</td><td><a href="' + site + '" target="_blank">Visit Website</a></td></tr>';
+	return '<tr><td>' + name + '</td><td>' + current + '</td><td>' + min + '</td><td><a href="' + site + '" target="_blank">' + visit + '</a></td></tr>';
 }
 
 /*
@@ -272,8 +271,6 @@ function forceStatusPage(url) {
 }
 
 function checkDisplayBanner(bannerfailure, link, bannerlink) {
-	console.log("checkdisplaybanner " + bannerfailure);
-
     if (upToDate == false) {
 	displayBanner(false, bannerfailure, link, bannerlink);
 		} else {
@@ -359,7 +356,6 @@ function minBrowserCheck(enabled) {
  * Checks all enabled browser and plugin versions that are required to be checked, based on the administrators compatibility-test settings.
  */
 function isUpToDate(enabled) {
-	console.log(enabled);
 	if (enabled["browser"] && !minBrowserCheck(enabled)) {
 		upToDate = false;
 	}
@@ -375,8 +371,6 @@ function isUpToDate(enabled) {
 	else if (enabled["silverlight"][0] && !checkSilverlight(enabled["silverlight"][1])) {
 		upToDate = false;
 	}
-
-	console.log("ROAR " + upToDate);
 }
 
 var upToDate = true;
