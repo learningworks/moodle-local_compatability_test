@@ -10,5 +10,9 @@ pre-set minimum version and notify the user that they are not meeting the sites 
 VERSION UPDATES
 ===============
 
+Version 2014120800
+Fixed Silverlight Url
+Removed console log calls
+
 Version 2014081501,
 Initial release

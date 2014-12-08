@@ -7,35 +7,35 @@ function checkJava(minJava) {
 
 	switch(PluginDetect.isMinVersion("Java", minJava)) {
 		case 1:
-			console.log("Java is good enough");
+			//console.log("Java is good enough");
 			return true;
 		break;
 		case 0:
-			console.log("case 0 - plugin installed & enabled but version is unknown unable to determine if version >= minVersion).");
+			//console.log("case 0 - plugin installed & enabled but version is unknown unable to determine if version >= minVersion).");
 			return false;
 		break;
 		case -0.1:
-			console.log("Java is not good enough");
+			//console.log("Java is not good enough");
 			return false;
 		break;
 		case -0.2:
-			console.log("case -0.2  plugin installed but not enabled. Some browsers occasionally reveal enough info to make this determination.");
+			//console.log("case -0.2  plugin installed but not enabled. Some browsers occasionally reveal enough info to make this determination.");
 			return false;
 		break;
 		case -0.5:
-			console.log(".");
+			//console.log(".");
 			return false;
 		break;
 		case -1:
-			console.log("case -1 plugin is not installed or not enabled.");
+			//console.log("case -1 plugin is not installed or not enabled.");
 			return false;
 		break;
 		case -1.5:
-			console.log("case -1.5  plugin status is unknown. This only occurs for certain plugins or certain browsers.");
+			//console.log("case -1.5  plugin status is unknown. This only occurs for certain plugins or certain browsers.");
 			return false;
 		break;
 		case -3:
-			console.log("case -3 you supplied a bad input argument to the isMinVersion( ) method.");
+			//console.log("case -3 you supplied a bad input argument to the isMinVersion( ) method.");
 			return false;
 		break;
 	}
@@ -44,34 +44,34 @@ function checkJava(minJava) {
 function checkFlash(minFlash) {
 	switch(PluginDetect.isMinVersion("Flash", minFlash)) {
 	case 1:
-		console.log("Flash is good enough");
+		//console.log("Flash is good enough");
 		return true;
 	break;
 	case 0:
-		console.log("case 0 - plugin installed & enabled but version is unknown (unable to determine if version >= minVersion).");
+		//console.log("case 0 - plugin installed & enabled but version is unknown (unable to determine if version >= minVersion).");
 		return false;
 	break;
 	case -0.1:
-		console.log("Flash is not good enough");
+		//console.log("Flash is not good enough");
 		return false;
 	break;
 	case -0.2:
-		console.log("case -0.2  plugin installed but not enabled. Some browsers occasionally reveal enough info to make this determination.");
+		//console.log("case -0.2  plugin installed but not enabled. Some browsers occasionally reveal enough info to make this determination.");
 	break;
 	case -0.5:
-		console.log(".");
+		//console.log(".");
 		return false;
 	break;
 	case -1:
-		console.log("case -1 plugin is not installed or not enabled.");
+		//console.log("case -1 plugin is not installed or not enabled.");
 		return false;
 	break;
 	case -1.5:
-		console.log("case -1.5  plugin status is unknown. This only occurs for certain plugins or certain browsers.");
+		//console.log("case -1.5  plugin status is unknown. This only occurs for certain plugins or certain browsers.");
 		return false;
 	break;
 	case -3:
-		console.log("case -3 you supplied a bad input argument to the isMinVersion( ) method.");
+		//console.log("case -3 you supplied a bad input argument to the isMinVersion( ) method.");
 		return false;
 	break;
 	}
@@ -80,34 +80,34 @@ function checkFlash(minFlash) {
 function checkQuicktime(minQuicktime) {
 	switch(PluginDetect.isMinVersion("Quicktime", minQuicktime)) {
 	case 1:
-		console.log("Quicktime is good enough");
+		//console.log("Quicktime is good enough");
 		return true;
 	break;
 	case 0:
-		console.log("case 0 - plugin installed & enabled but version is unknown (unable to determine if version >= minVersion).");
+		//console.log("case 0 - plugin installed & enabled but version is unknown (unable to determine if version >= minVersion).");
 		return false;
 	break;
 	case -0.1:
-		console.log("Quicktime is not good enough");
+		//console.log("Quicktime is not good enough");
 		return false;
 	break;
 	case -0.2:
-		console.log("case -0.2  plugin installed but not enabled. Some browsers occasionally reveal enough info to make this determination.");
+		//console.log("case -0.2  plugin installed but not enabled. Some browsers occasionally reveal enough info to make this determination.");
 	break;
 	case -0.5:
-		console.log(".");
+		//console.log(".");
 		return false;
 	break;
 	case -1:
-		console.log("case -1 plugin is not installed or not enabled.");
+		//console.log("case -1 plugin is not installed or not enabled.");
 		return false;
 	break;
 	case -1.5:
-		console.log("case -1.5  plugin status is unknown. This only occurs for certain plugins or certain browsers.");
+		//console.log("case -1.5  plugin status is unknown. This only occurs for certain plugins or certain browsers.");
 		return false;
 	break;
 	case -3:
-		console.log("case -3 you supplied a bad input argument to the isMinVersion( ) method.");
+		//console.log("case -3 you supplied a bad input argument to the isMinVersion( ) method.");
 		return false;
 	break;
 	}
@@ -116,34 +116,34 @@ function checkQuicktime(minQuicktime) {
 function checkSilverlight(minSilverlight) {
 	switch(PluginDetect.isMinVersion("Silverlight", minSilverlight)) {
 	case 1:
-		console.log("Silverlight is good enough");
+		//console.log("Silverlight is good enough");
 		return true;
 	break;
 	case 0:
-		console.log("case 0 - plugin installed & enabled but version is unknown (unable to determine if version >= minVersion).");
+		//console.log("case 0 - plugin installed & enabled but version is unknown (unable to determine if version >= minVersion).");
 		return false;
 	break;
 	case -0.1:
-		console.log("Silverlight is not good enough");
+		//console.log("Silverlight is not good enough");
 		return false;
 	break;
 	case -0.2:
-		console.log("case -0.2  plugin installed but not enabled. Some browsers occasionally reveal enough info to make this determination.");
+		//console.log("case -0.2  plugin installed but not enabled. Some browsers occasionally reveal enough info to make this determination.");
 	break;
 	case -0.5:
-		console.log(".");
+		//console.log(".");
 		return false;
 	break;
 	case -1:
-		console.log("case -1 plugin is not installed or not enabled.");
+		//console.log("case -1 plugin is not installed or not enabled.");
 		return false;
 	break;
 	case -1.5:
-		console.log("case -1.5  plugin status is unknown. This only occurs for certain plugins or certain browsers.");
+		//console.log("case -1.5  plugin status is unknown. This only occurs for certain plugins or certain browsers.");
 		return false;
 	break;
 	case -3:
-		console.log("case -3 you supplied a bad input argument to the isMinVersion( ) method.");
+		//console.log("case -3 you supplied a bad input argument to the isMinVersion( ) method.");
 		return false;
 	break;
 	}
@@ -195,7 +195,7 @@ function updateUserView(enabled) {
 				mySilverlight = "Not installed";
 			}
 
-			tablebody += buildRow("Silverlight", mySilverlight.replace(/,/g, "."), enabled["silverlight"][1], "hhttp://www.microsoft.com/getsilverlight/", enabled['visit_website']);
+			tablebody += buildRow("Silverlight", mySilverlight.replace(/,/g, "."), enabled["silverlight"][1], "http://www.microsoft.com/getsilverlight/", enabled['visit_website']);
 		}
 		if (enabled["browser"]) {
 
