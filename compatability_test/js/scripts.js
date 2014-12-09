@@ -160,67 +160,67 @@ function updateUserView(enabled) {
 			var myJava = PluginDetect.getVersion("java");
 
 			if (myJava == null) {
-				myJava = "Not installed";
+				myJava = lang_strings['failure_java_not_installed'];
 			}
 
 			// Mac no longer supports Java.
 			if (navigator.platform.substring(0, 3) == "Mac") {
-				myJava = "Unsupported on Mac";
+				myJava = lang_strings['failure_java_mac'];
 			}
 
-			tablebody += buildRow("Java", myJava.replace(/,/g, "."), enabled["java"][1], "http://java.com/download/", enabled['visit_website']);
+			tablebody += buildRow("Java", myJava.replace(/,/g, "."), enabled["java"][1], "http://java.com/download/", lang_strings['visit_website_java']);
 		}
 		if (enabled["flash"][0]) {
 			var myFlash = PluginDetect.getVersion("flash");
 
 			if (myFlash == null) {
-				myFlash = "Not installed";
+				myFlash = lang_strings['failure_flash_not_installed'];
 			}
 
-			tablebody += buildRow("Flash", myFlash.replace(/,/g, "."), enabled["flash"][1], "http://get.adobe.com/flashplayer/", enabled['visit_website']);
+			tablebody += buildRow("Flash", myFlash.replace(/,/g, "."), enabled["flash"][1], "http://get.adobe.com/flashplayer/", lang_strings['visit_website_flash']);
 		}
 		if (enabled["quicktime"][0]) {
 			var myQuicktime = PluginDetect.getVersion("quicktime");
 
 			if (myQuicktime == null) {
-				myQuicktime = "Not installed";
+				myQuicktime = lang_strings['failure_quicktime_not_installed'];
 			}
 
-			tablebody += buildRow("Quicktime", myQuicktime.replace(/,/g, "."), enabled["quicktime"][1], "https://www.apple.com/nz/quicktime/download/", enabled['visit_website']);
+			tablebody += buildRow("Quicktime", myQuicktime.replace(/,/g, "."), enabled["quicktime"][1], "https://www.apple.com/nz/quicktime/download/", lang_strings['visit_website_quicktime']);
 		}
 		if (enabled["silverlight"][0]) {
 			var mySilverlight = PluginDetect.getVersion("silverlight");
 
 			if (mySilverlight == null) {
-				mySilverlight = "Not installed";
+				mySilverlight = lang_strings['failure_silverlight_not_installed'];
 			}
 
-			tablebody += buildRow("Silverlight", mySilverlight.replace(/,/g, "."), enabled["silverlight"][1], "http://www.microsoft.com/getsilverlight/", enabled['visit_website']);
+			tablebody += buildRow("Silverlight", mySilverlight.replace(/,/g, "."), enabled["silverlight"][1], "http://www.microsoft.com/getsilverlight/", lang_strings['visit_website_silverlight']);
 		}
 		if (enabled["browser"]) {
 
 			if (PluginDetect.browser.isChrome && enabled["chrome"][0]) {
 				var myChrome = PluginDetect.browser.verChrome.replace(/,/g, ".");
 
-				tablebody += buildRow("Chrome", myChrome, enabled["chrome"][1], "http://www.google.com/chrome/browser/", enabled['visit_website']);
+				tablebody += buildRow("Chrome", myChrome, enabled["chrome"][1], "http://www.google.com/chrome/browser/", lang_strings['visit_website_chrome']);
 			}
 
 			if (PluginDetect.browser.isGecko && enabled["gecko"][0]) {
 				var myGecko = PluginDetect.browser.verGecko.replace(/,/g, ".");
 
-				tablebody += buildRow("Firefox", myGecko, enabled["gecko"][1], "https://www.mozilla.org/en-US/firefox/new/", enabled['visit_website']);
+				tablebody += buildRow("Firefox", myGecko, enabled["gecko"][1], "https://www.mozilla.org/en-US/firefox/new/", lang_strings['visit_website_gecko']);
 			}
 
 			if (PluginDetect.browser.isOpera && enabled["opera"][0]) {
 				var myOpera = PluginDetect.browser.verOpera.replace(/,/g, ".");
 
-				tablebody += buildRow("Opera", myOpera, enabled["opera"][1], "http://www.opera.com/computer/", enabled['visit_website']);
+				tablebody += buildRow("Opera", myOpera, enabled["opera"][1], "http://www.opera.com/computer/", lang_strings['visit_website_opera']);
 			}
 
 			if (PluginDetect.browser.isSafari && enabled["safari"][0]) {
 				var mySafari = PluginDetect.browser.verSafari.replace(/,/g, ".");;
 
-				tablebody += buildRow("Safari", mySafari, enabled["safari"][1], "http://support.apple.com/downloads/#safari", enabled['visit_website']);
+				tablebody += buildRow("Safari", mySafari, enabled["safari"][1], "http://support.apple.com/downloads/#safari", lang_strings['visit_website_safari']);
 			}
 		}
 
@@ -241,7 +241,7 @@ function buildRow(name, current, min, site, visit) {
 }
 
 /*
- * This function builds and outputs a banner that notifies the users thatt their browser is not ready.
+ * This function builds and outputs a banner that notifies the users that their browser is not ready.
  */
 function displayBanner(check, bannerfailure, link, bannerlink) {
 	if (check == false) {  //&& document.body.id == "page-admin-setting-local_compatability_test") {
@@ -254,7 +254,7 @@ function displayBanner(check, bannerfailure, link, bannerlink) {
 		var banner = document.createElement("div");
 		banner.className = "alert alert-success";
 		banner.style.textAlign = "center";
-		banner.innerHTML = "Your browser & plugins are up to date.";
+		banner.innerHTML = lang_strings['banner_success'];
 		document.getElementById("page").insertBefore(banner, document.getElementById("page").firstChild);
 	}
 }

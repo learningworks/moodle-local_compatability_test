@@ -46,21 +46,25 @@ $string['enable_chrome_check'] = 'Enable Chrome Checking';
 $string['enable_chrome_check_desc'] = 'Enable Chrome checking against set parameters.';
 $string['min_version_chrome'] = 'Minimum Chrome Version';
 $string['min_version_chrome_desc'] = 'The minimum version of Chrome required to properly view the site.';
+$string['visit_website_chrome'] = "Visit website";
 
 $string['enable_gecko_check'] = 'Enable Firefox Checking';
 $string['enable_gecko_check_desc'] = 'Enable Firefox checking against set parameters.';
 $string['min_version_gecko'] = 'Minimum Firefox Version';
 $string['min_version_gecko_desc'] = 'The minimum version of Firefox required to properly view the site.';
+$string['visit_website_gecko'] = "Visit website";
 
 $string['enable_opera_check'] = 'Enable Opera Checking';
 $string['enable_opera_check_desc'] = 'Enable Opera checking against set parameters.';
 $string['min_version_opera'] = 'Minimum Opera Version';
 $string['min_version_opera_desc'] = 'The minimum version of Opera required to properly view the site.';
+$string['visit_website_opera'] = "Visit website";
 
 $string['enable_safari_check'] = 'Enable Safari Checking';
 $string['enable_safari_check_desc'] = 'Enable Safari checking against set parameters.';
 $string['min_version_safari'] = 'Minimum Safari Version';
 $string['min_version_safari_desc'] = 'The minimum version of Safari required to properly view the site.';
+$string['visit_website_safari'] = "Visit website";
 
 $string['enable_java_check'] = 'Enable Java Checking';
 $string['enable_java_check_desc'] = 'Enable Java version checking against set parameters.';
@@ -68,6 +72,10 @@ $string['min_version_java'] = 'Minimum Java Version';
 $string['min_version_java_desc'] = 'The minimum version of Java required to properly view the site.';
 $string['success_version_java'] = 'You are running a sufficiently up-to-date Java version.';
 $string['failure_version_java'] = 'You are not running the latest version of Java.';
+$string['failure_java_not_installed'] = "Not installed";
+$string['failure_java_mac'] = "Unsupported on Mac";
+$string['visit_website_java'] = "Visit website";
+
 
 $string['enable_flash_check'] = 'Enable Flash Checking';
 $string['enable_flash_check_desc'] = 'Enable Flash version checking against set parameters.';
@@ -75,6 +83,8 @@ $string['min_version_flash'] = 'Minimum Flash Version';
 $string['min_version_flash_desc'] = 'The minimum version of Flash required to properly view the site.';
 $string['success_version_flash'] = 'You are running a sufficiently up-to-date Flash version.';
 $string['failure_version_flash'] = 'You are not running the latest version of Flash.';
+$string['failure_flash_not_installed'] = "Not installed";
+$string['visit_website_flash'] = "Visit website";
 
 $string['enable_quicktime_check'] = 'Enable Quicktime Checking';
 $string['enable_quicktime_check_desc'] = 'Enable Quicktime version checking against set parameters.';
@@ -82,6 +92,8 @@ $string['min_version_quicktime'] = 'Minimum Quicktime Version';
 $string['min_version_quicktime_desc'] = 'The minimum version of Quicktime required to properly view the site.';
 $string['success_version_quicktime'] = 'You are running a sufficiently up-to-date Quicktime version.';
 $string['failure_version_quicktime'] = 'You are not running the latest version of Quicktime.';
+$string['failure_quicktime_not_installed'] = "Not installed";
+$string['visit_website_quicktime'] = "Visit website";
 
 $string['enable_silverlight_check'] = 'Enable Silverlight Checking';
 $string['enable_silverlight_check_desc'] = 'Enable Silverlight version checking against set parameters.';
@@ -89,7 +101,10 @@ $string['min_version_silverlight'] = 'Minimum Silverlight Version';
 $string['min_version_silverlight_desc'] = 'The minimum version of Silverlight required to properly view the site.';
 $string['success_version_silverlight'] = 'You are running a sufficiently up-to-date Silverlight version.';
 $string['failure_version_silverlight'] = 'You are not running the latest version of Silverlight.';
+$string['failure_silverlight_not_installed'] = "Not installed";
+$string['visit_website_silverlight'] = "Visit website";
 
+$string['banner_success'] = 'Your browser & plugins are up to date.';
 $string['banner_failure'] = 'Your browser and/or plugins are not up to date.';
 $string['banner_link'] = 'Click here for more information.';
 $string['compatability_test:forceredirect'] = 'Force view status page';

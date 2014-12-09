@@ -252,7 +252,6 @@ function local_compatability_test_admin_feedback() {
 
 global $COURSE, $USER, $DB, $CFG, $PAGE;
 
-// Gets a json encoded hash to pass to javascript.
 $enabled = local_compatability_test_check_enabled();
 
 // Adds the required scripts to the head of the page and calls the inital isUpToDate() function.
@@ -278,9 +277,42 @@ $bannerfailure = get_string('banner_failure', 'local_compatability_test');
 $bannerlink = get_string('banner_link', 'local_compatability_test');
 $link = $CFG->wwwroot . '/local/compatability_test/view.php';
 
+$stringman = get_string_manager();
+$strings = $stringman->load_component_strings('local_compatability_test','en');
 // Calls the functions required to build the display banner and the view.php table content.
 $CFG->additionalhtmlfooter .= '
 <script>
+	var lang_strings = [];
+    lang_strings["banner_success"] =  "'.$strings['banner_success']
+	.'";
+	lang_strings["failure_java_not_installed"] =  "'.$strings['failure_java_not_installed']
+	.'";
+	lang_strings["failure_java_mac"] =  "'.$strings['failure_java_mac']
+	.'";
+	lang_strings["visit_website_java"] =  "'.$strings['visit_website_java']
+	.'";
+	lang_strings["failure_flash_not_installed"] =  "'.$strings['failure_flash_not_installed']
+	.'";
+	lang_strings["visit_website_flash"] =  "'.$strings['visit_website_flash']
+	.'";
+	lang_strings["failure_quicktime_not_installed"] =  "'.$strings['failure_quicktime_not_installed']
+	.'";
+	lang_strings["visit_website_quicktime"] =  "'.$strings['visit_website_quicktime']
+	.'";
+	lang_strings["failure_silverlight_not_installed"] =  "'.$strings['failure_silverlight_not_installed']
+	.'";
+	lang_strings["visit_website_silverlight"] =  "'.$strings['visit_website_silverlight']
+	.'";
+	lang_strings["visit_website_chrome"] =  "'.$strings['visit_website_chrome']
+	.'";
+	lang_strings["visit_website_gecko"] =  "'.$strings['visit_website_gecko']
+	.'";
+	lang_strings["visit_website_opera"] =  "'.$strings['visit_website_opera']
+	.'";
+	lang_strings["visit_website_safari"] =  "'.$strings['visit_website_safari']
+	.'";
+	
+	
     updateUserView(' . $enabled . ');
     checkDisplayBanner( \''. $bannerfailure .'\', \''. $link .'\', \''. $bannerlink .'\');
 </script>
