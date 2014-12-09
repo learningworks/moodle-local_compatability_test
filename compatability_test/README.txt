@@ -9,6 +9,9 @@ pre-set minimum version and notify the user that they are not meeting the sites 
 
 VERSION UPDATES
 ===============
+Version 2014120801
+Converted 14 more hard coded strings to lang files
+Implemented javascript lang file interactions
 
 Version 2014120800
 Fixed Silverlight Url

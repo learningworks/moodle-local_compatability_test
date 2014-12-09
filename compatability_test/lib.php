@@ -277,6 +277,7 @@ $bannerfailure = get_string('banner_failure', 'local_compatability_test');
 $bannerlink = get_string('banner_link', 'local_compatability_test');
 $link = $CFG->wwwroot . '/local/compatability_test/view.php';
 
+//GET THE LANG FILE STRINGS 
 $stringman = get_string_manager();
 $strings = $stringman->load_component_strings('local_compatability_test','en');
 // Calls the functions required to build the display banner and the view.php table content.
