@@ -26,7 +26,7 @@
  */
 
 $plugin->version  = 2014120801; // YYYYMMDDHH (year, month, day, 24-hr time).
-$plugin->requires = 2013101800; // YYYYMMDDHH (This is the release version for Moodle 2.4).
+$plugin->requires = 2014041100; // YYYYMMDDHH (This is the release version for Moodle 2.4).
 $plugin->component = 'local_compatability_test';
 $plugin->maturity = MATURITY_BETA;
-$plugin->release = 'Moodle 2.6.2+ (Build: 20141001)';
+$plugin->release = 'Moodle 2.7 (Build: 2014051200)';
