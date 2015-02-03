@@ -261,7 +261,7 @@ $CFG->additionalhtmlhead .= '
 <script>isUpToDate('.$enabled.');</script>';
 
 // If the force_view_page setting is set and the the user is not an admin, they will be redirected to
-// he view.php page.
+// the view.php page.
 if (local_compatability_test_force_view_page()) {
     if (!is_siteadmin()) {
         $CFG->additionalhtmlhead .= '
