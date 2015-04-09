@@ -246,13 +246,13 @@ function buildRow(name, current, min, site, visit) {
 function displayBanner(check, bannerfailure, link, bannerlink) {
 	if (check == false) {  //&& document.body.id == "page-admin-setting-local_compatability_test") {
 		var banner = document.createElement("div");
-		banner.className = "alert alert-fail";
+		banner.className = "alert alert-fail local-compatability-alert";
 		banner.style.textAlign = "center";
 		banner.innerHTML = "" + bannerfailure + " <a href=\"" + link + "\">" + bannerlink + "</a>";
 		document.getElementById("page").insertBefore(banner, document.getElementById("page").firstChild);
 	}else{
 		var banner = document.createElement("div");
-		banner.className = "alert alert-success";
+		banner.className = "alert alert-success local-compatability-alert";
 		banner.style.textAlign = "center";
 		banner.innerHTML = lang_strings['banner_success'];
 		document.getElementById("page").insertBefore(banner, document.getElementById("page").firstChild);
