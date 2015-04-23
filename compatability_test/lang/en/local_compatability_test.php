@@ -42,6 +42,12 @@ $string['enable_browser_check_desc'] = 'Enable browser version checking against 
 $string['success_version_browser'] = 'You are running a sufficiently up-to-date browser version.';
 $string['failure_version_browser'] = 'You are not running the latest browser version.';
 
+$string['enable_ie_check'] = 'Enable Internet Explorer Checking';
+$string['enable_ie_check_desc'] = 'Enable Internet Explorer checking against set parameters.';
+$string['min_version_ie'] = 'Minimum Internet Explorer Version';
+$string['min_version_ie_desc'] = 'The minimum version of Internet Explorer required to properly view the site.';
+$string['visit_website_ie'] = "Visit website";
+
 $string['enable_chrome_check'] = 'Enable Chrome Checking';
 $string['enable_chrome_check_desc'] = 'Enable Chrome checking against set parameters.';
 $string['min_version_chrome'] = 'Minimum Chrome Version';

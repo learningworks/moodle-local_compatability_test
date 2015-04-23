@@ -55,6 +55,16 @@ if ($hassiteconfig) {
     $setting = new admin_setting_configcheckbox('local_compatability_test/enable_browser_check', $title, $desc, 0);
     $settings->add($setting);
 
+    $title = get_string('enable_ie_check', 'local_compatability_test');
+    $desc = get_string('enable_ie_check_desc', 'local_compatability_test');
+    $setting = new admin_setting_configcheckbox('local_compatability_test/enable_ie_check', $title, $desc, 0);
+    $settings->add($setting);
+
+    $title = get_string('min_version_ie', 'local_compatability_test');
+    $desc = get_string('min_version_ie_desc', 'local_compatability_test');
+    $setting = new admin_setting_configtext('local_compatability_test/min_version_ie', $title, $desc, '9');
+    $settings->add($setting);
+
     $title = get_string('enable_chrome_check', 'local_compatability_test');
     $desc = get_string('enable_chrome_check_desc', 'local_compatability_test');
     $setting = new admin_setting_configcheckbox('local_compatability_test/enable_chrome_check', $title, $desc, 0);

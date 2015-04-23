@@ -218,9 +218,15 @@ function updateUserView(enabled) {
 			}
 
 			if (PluginDetect.browser.isSafari && enabled["safari"][0]) {
-				var mySafari = PluginDetect.browser.verSafari.replace(/,/g, ".");;
+				var mySafari = PluginDetect.browser.verSafari.replace(/,/g, ".");
 
 				tablebody += buildRow("Safari", mySafari, enabled["safari"][1], "http://support.apple.com/downloads/#safari", lang_strings['visit_website_safari']);
+			}
+			if (PluginDetect.browser.isIE && enabled["ie"][0]) {
+				var myIE = PluginDetect.browser.verIEtrue;
+
+				tablebody += buildRow("ie", myIE, enabled["ie"][1], "http://windows.microsoft.com/en-us/internet-explorer/download-ie", lang_strings['visit_website_ie']);
+				console.log(tablebody);
 			}
 		}
 
@@ -286,6 +292,7 @@ function checkDisplayBanner(bannerfailure, link, bannerlink) {
  */
 function isMinBrowser(browser, minVersion) {
 	var currentVersion;
+
 	minVersion = minVersion.split('.');
     switch (browser){
 	    case "chrome":
@@ -325,6 +332,18 @@ function isMinBrowser(browser, minVersion) {
 				}
 			}
 		break;
+		case "ie":
+			var currentVersion = PluginDetect.browser.verIE;
+			console.log("Checking IE version");
+			console.log(currentVersion);
+			console.log(minVersion);
+
+			for (var i = 0; i < minVersion.length; i++){
+				if (minVersion <= currentVersion){
+					return true;
+				}
+			}
+		break;
     }
 
     return false;
@@ -350,6 +369,10 @@ function minBrowserCheck(enabled) {
 	if (enabled["safari"][0] && PluginDetect.browser.isSafari) {
 		return isMinBrowser("safari", enabled["safari"][1]);
 	}
+	if (enabled["ie"][0] && PluginDetect.browser.isIE) {
+		console.log("Checking IE");
+		return isMinBrowser("ie", enabled["ie"][1]);
+	}
 }
 
 /*
@@ -357,6 +380,7 @@ function minBrowserCheck(enabled) {
  */
 function isUpToDate(enabled) {
 	if (enabled["browser"] && !minBrowserCheck(enabled)) {
+		console.log("Browser checkign enabled js...");
 		upToDate = false;
 	}
 	else if (enabled["java"][0] && !checkJava(enabled["java"][1])) {

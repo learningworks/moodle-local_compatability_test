@@ -35,6 +35,7 @@ function local_compatability_test_check_enabled() {
         "gecko" => array(false, local_compatability_test_min_version_gecko()),
         "opera" => array(false, local_compatability_test_min_version_opera()),
         "safari" => array(false, local_compatability_test_min_version_safari()),
+        "ie" => array(false, local_compatability_test_min_version_ie()),
         "flash" => array(false, local_compatability_test_min_version_flash()),
         "java" => array(false, local_compatability_test_min_version_java()),
         "quicktime" => array(false, local_compatability_test_min_version_quicktime()),
@@ -76,8 +77,12 @@ function local_compatability_test_check_enabled() {
         if (local_compatability_test_enable_safari_check()) {
             $enabled["safari"][0] = true;
         }
+        if (local_compatability_test_enable_ie_check()) {
+            var_dump("IE CHECKING ENABLED");
+            $enabled["ie"][0] = true;
+        }
     }
-
+    var_dump($enabled);
     return json_encode($enabled);
 }
 
@@ -118,6 +123,14 @@ function local_compatability_test_enable_opera_check() {
 }
 function local_compatability_test_enable_safari_check() {
     $enabled = get_config('local_compatability_test', 'enable_safari_check');
+    if (empty($enabled)) {
+        return false;
+    } else {
+        return true;
+    }
+}
+function local_compatability_test_enable_ie_check() {
+    $enabled = get_config('local_compatability_test', 'enable_ie_check');
     if (empty($enabled)) {
         return false;
     } else {
@@ -225,6 +238,14 @@ function local_compatability_test_min_version_safari() {
         return $enabled;
     }
 }
+function local_compatability_test_min_version_ie() {
+    $enabled = get_config('local_compatability_test', 'min_version_ie');
+    if (empty($enabled)) {
+        return false;
+    } else {
+        return $enabled;
+    }
+}
 
 /*
  * Checks if the force_view_page setting is set and returns the value.
@@ -312,6 +333,8 @@ $CFG->additionalhtmlfooter .= '
 	.'";
 	lang_strings["visit_website_safari"] =  "'.$strings['visit_website_safari']
 	.'";
+    lang_strings["visit_website_ie"] =  "'.$strings['visit_website_ie']
+    .'";
 	
 	
     updateUserView(' . $enabled . ');
